@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>SSE Test</title>
+    <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+  </head>
+  <body>
+    <h1>SSE Test</h1>
+    <button id="stop-stream" value="Stop">Stop</button>
+    <div id="messages">
+    </div>
+
+  </body>
+  <script>
+    var source = new EventSource('http://localhost:9090/suburbs'),
+        messages = document.getElementById('messages'),
+        button = document.getElementById('stop-stream');
+
+    button.addEventListener('click', function(evt) {
+      source.close();
+    }, false);
+
+    source.addEventListener('message', function(evt) {
+      console.log('message', evt.lastEventId)
+      var el = $('<div>').html("Got: " + evt.lastEventId);
+      var obj = JSON.parse(JSON.parse(evt.data));
+      console.log(obj);
+      $('#messages').append(el);
+    }, false);
+
+    source.addEventListener('open', function(evt) {
+      // Connection was opened.
+      console.log('Opened');
+    }, false);
+
+    source.addEventListener('error', function(e) {
+      if (e.readyState == EventSource.CLOSED) {
+        console.log('Closed');
+      }
+    }, false);
+
+    source.addEventListener('close', function(evt) {
+      console.log('Stopped');
+    });
+  </script>
+</html>

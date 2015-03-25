@@ -1,0 +1,22 @@
+{
+  "name": "sse-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thom Joy <thomjoy1984@gmail.com> (http://github.com/thomjoy)",
+  "license": "ISC",
+  "devDependencies": {
+    "compression": "^1.4.3",
+    "concat-stream": "^1.4.7",
+    "cors": "^2.5.3",
+    "express": "^4.12.3",
+    "jsonpack": "^1.1.4",
+    "map-stream": "0.0.5",
+    "oppressor": "0.0.1",
+    "redis": "^0.12.1",
+    "through": "^2.3.6"
+  }
+}
